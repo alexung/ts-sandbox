@@ -1,7 +1,9 @@
 import * as React from 'react';
-import './App.css';
 
+import DeckGLOverlay from './components/DeckGLOverlay/index';
 import logo from './logo.svg';
+
+import './App.css';
 
 export interface AppProps {
   instructions: string;
@@ -26,6 +28,7 @@ class App extends React.Component<AppProps, {}> {
         <p className="App-intro">
           {this.props.instructions}
         </p>
+        <DeckGLOverlay />
       </div>
     );
   }
