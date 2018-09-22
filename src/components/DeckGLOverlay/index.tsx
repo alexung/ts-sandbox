@@ -5,14 +5,16 @@ import * as reactMapGL from 'react-map-gl';
 
 export interface DeckGLOverlayProps {
   controller: boolean,
-  initialViewState?: object,
+  initialViewState: object,
   viewState?: object,
   onViewStateChange?: () => void,
   width: number,
   height: number,
   mapStyle: string,
-  preventStyleDiffing: boolean
+  preventStyleDiffing: boolean,
 }
+
+
 
 const MAPBOX_TOKEN: string | undefined = process.env.REACT_APP_MAPBOX_PUBLIC_TOKEN;
 
@@ -27,15 +29,15 @@ class DeckGLOverlay extends React.Component<DeckGLOverlayProps, {}> {
       onViewStateChange={this._onViewStateChange}
     */
     if (!MAPBOX_TOKEN) {return;}
-    const { controller, width, height, mapStyle, preventStyleDiffing } = this.props;
+    const { controller, width, height, mapStyle, preventStyleDiffing, initialViewState } = this.props;
     return (
       <DeckGL
         layers={this.renderLayers()}
-        controller={controller}>
+        controller={controller}
+        initialViewState={initialViewState}>
           <reactMapGL.StaticMap
             width={width}
             height={height}
-            // reuseMaps
             mapStyle={mapStyle}
             preventStyleDiffing={preventStyleDiffing}
             mapboxApiAccessToken={MAPBOX_TOKEN} />
