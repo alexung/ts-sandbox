@@ -28,7 +28,12 @@ class App extends React.Component<AppProps, {}> {
         <p className="App-intro">
           {this.props.instructions}
         </p>
-        <DeckGLOverlay />
+        <DeckGLOverlay
+          controller={true}
+          width={window.innerWidth}
+          height={window.innerHeight}
+          mapStyle={"mapbox://styles/mapbox/dark-v9"}
+          preventStyleDiffing={true} />
       </div>
     );
   }
