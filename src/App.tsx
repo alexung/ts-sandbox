@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import DevTools from 'mobx-react-devtools';
+
 import DeckGLOverlay from './components/DeckGLOverlay/index';
 
 import './App.css';
@@ -8,16 +10,6 @@ import './App.css';
 //   instructions: string;
 //   welcomeMessage: string;
 // }
-
-export const INITIAL_VIEW_STATE: object = {
-  bearing: -27.396674584323023,
-  latitude: 38.8283,
-  longitude: -98.5795,
-  maxZoom: 15,
-  minZoom: 1,
-  pitch: 40.5,
-  zoom: 4,
-};
 
 // AppProps is the interface
 // {} afterward is the state
@@ -31,8 +23,9 @@ class App extends React.Component {
         width={window.innerWidth}
         height={window.innerHeight}
         mapStyle={"mapbox://styles/mapbox/dark-v9"}
-        preventStyleDiffing={true}
-        initialViewState={INITIAL_VIEW_STATE} />
+        preventStyleDiffing={true}>
+        <DevTools />
+      </DeckGLOverlay>
     );
   }
 }

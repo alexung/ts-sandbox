@@ -3,9 +3,8 @@ import * as React from 'react';
 import DeckGL from 'deck.gl';
 import * as reactMapGL from 'react-map-gl';
 
-export interface DeckGLOverlayProps {
+interface DeckGLOverlayProps {
   controller: boolean,
-  initialViewState: object,
   viewState?: object,
   onViewStateChange?: () => void,
   width: number,
@@ -14,27 +13,37 @@ export interface DeckGLOverlayProps {
   preventStyleDiffing: boolean,
 }
 
+// interface DeckGLOverlayState {
+//   viewState: object,
+// }
 
+const INITIAL_VIEW_STATE: object = {
+  bearing: -27.396674584323023,
+  latitude: 38.8283,
+  longitude: -98.5795,
+  maxZoom: 15,
+  minZoom: 1,
+  pitch: 40.5,
+  zoom: 4,
+};
 
 const MAPBOX_TOKEN: string | undefined = process.env.REACT_APP_MAPBOX_PUBLIC_TOKEN;
 
-class DeckGLOverlay extends React.Component<DeckGLOverlayProps, {}> {
+class DeckGLOverlay extends React.Component<DeckGLOverlayProps> {
+  public state = {
+    viewState: INITIAL_VIEW_STATE
+  }
+
   public render() {
-    /*
-          <DeckGL
-      layers={this._renderLayers()}
-      controller={controller}
-      initialViewState={INITIAL_VIEW_STATE}
-      viewState={viewState}
-      onViewStateChange={this._onViewStateChange}
-    */
     if (!MAPBOX_TOKEN) {return;}
-    const { controller, width, height, mapStyle, preventStyleDiffing, initialViewState } = this.props;
+    const { controller, width, height, mapStyle, preventStyleDiffing } = this.props;
+    // const { viewState } = this.state;
+
     return (
       <DeckGL
         layers={this.renderLayers()}
         controller={controller}
-        initialViewState={initialViewState}>
+        initialViewState={INITIAL_VIEW_STATE}>
           <reactMapGL.StaticMap
             width={width}
             height={height}

@@ -4,16 +4,21 @@
   "private": true,
   "dependencies": {
     "deck.gl": "^6.1.0",
+    "mobx": "^5.1.2",
+    "mobx-react": "^5.2.8",
     "react": "^16.5.2",
+    "react-app-rewire-mobx": "^1.0.9",
+    "react-app-rewire-typescript": "^2.0.2",
     "react-dom": "^16.5.2",
     "react-map-gl": "^3.3.4",
+    "react-scripts": "^1.1.5",
     "react-scripts-ts": "2.17.0"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-app-rewired eject"
   },
   "devDependencies": {
     "@types/jest": "^23.3.2",
@@ -21,6 +26,8 @@
     "@types/react": "^16.4.14",
     "@types/react-dom": "^16.0.7",
     "@types/react-map-gl": "^3.3.1",
+    "mobx-react-devtools": "^6.0.3",
+    "react-app-rewired": "^1.6.2",
     "typescript": "^3.0.3"
   }
 }
