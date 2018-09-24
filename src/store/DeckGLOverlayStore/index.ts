@@ -10,8 +10,11 @@ const INITIAL_VIEW_STATE: object = {
   zoom: 4,
 };
 
-
 export default class DeckGLOverlayStore {
-  @observable initialViewState: object = INITIAL_VIEW_STATE;
-  
+  @observable public initialViewState: object = INITIAL_VIEW_STATE;
+  @observable public controller: boolean = true;
+  @observable public width: number = window.innerWidth;
+  @observable public height: number = window.innerHeight;
+  @observable public mapStyle: string = 'mapbox://styles/mapbox/dark-v9';
+  @observable public preventStyleDiffing: boolean = true;
 }

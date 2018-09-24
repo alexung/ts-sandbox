@@ -1,49 +1,34 @@
 import * as React from 'react';
 
 import DeckGL from 'deck.gl';
+import { observer, inject } from 'mobx-react';
 import * as reactMapGL from 'react-map-gl';
 
-interface DeckGLOverlayProps {
-  controller: boolean,
-  viewState?: object,
-  onViewStateChange?: () => void,
-  width: number,
-  height: number,
-  mapStyle: string,
-  preventStyleDiffing: boolean,
-}
+// import DeckGLOverlayStore from '../../store/DeckGLOverlayStore/index';
+// import stores from '../../stores/index';
 
-// interface DeckGLOverlayState {
-//   viewState: object,
+
+// interface DeckGLOverlayProps {
+//   deckGLOverlayStore?: DeckGLOverlayStore
 // }
-
-const INITIAL_VIEW_STATE: object = {
-  bearing: -27.396674584323023,
-  latitude: 38.8283,
-  longitude: -98.5795,
-  maxZoom: 15,
-  minZoom: 1,
-  pitch: 40.5,
-  zoom: 4,
-};
 
 const MAPBOX_TOKEN: string | undefined = process.env.REACT_APP_MAPBOX_PUBLIC_TOKEN;
 
-class DeckGLOverlay extends React.Component<DeckGLOverlayProps> {
-  public state = {
-    viewState: INITIAL_VIEW_STATE
-  }
-
+@inject('stores')
+// @inject(({ deckGLOverlayStore }: { deckGLOverlayStore: stores.deckGLOverlayStore }) => ({
+//   deckGLOverlayStore
+// }))
+@observer
+class DeckGLOverlay extends React.Component<any, any> {
   public render() {
     if (!MAPBOX_TOKEN) {return;}
-    const { controller, width, height, mapStyle, preventStyleDiffing } = this.props;
-    // const { viewState } = this.state;
 
+    const { controller, initialViewState, width, height, mapStyle, preventStyleDiffing } = this.props.stores.deckGLOverlayStore;
     return (
       <DeckGL
         layers={this.renderLayers()}
         controller={controller}
-        initialViewState={INITIAL_VIEW_STATE}>
+        initialViewState={initialViewState}>
           <reactMapGL.StaticMap
             width={width}
             height={height}

@@ -18,12 +18,7 @@ class App extends React.Component {
 
   public render() {
     return (
-      <DeckGLOverlay
-        controller={true}
-        width={window.innerWidth}
-        height={window.innerHeight}
-        mapStyle={"mapbox://styles/mapbox/dark-v9"}
-        preventStyleDiffing={true}>
+      <DeckGLOverlay>
         <DevTools />
       </DeckGLOverlay>
     );
