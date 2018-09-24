@@ -17,4 +17,5 @@ export default class DeckGLOverlayStore {
   @observable public height: number = window.innerHeight;
   @observable public mapStyle: string = 'mapbox://styles/mapbox/dark-v9';
   @observable public preventStyleDiffing: boolean = true;
+  @observable public MAPBOX_TOKEN: string | undefined = process.env.REACT_APP_MAPBOX_PUBLIC_TOKEN;
 }
